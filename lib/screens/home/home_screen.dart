@@ -1,3 +1,4 @@
+import 'package:finance_management/screens/home/sliver_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:finance_management/design_system/design_system.dart';
 
@@ -15,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: AppColors.caribbeanGreen,
       body: CustomScrollView(
         slivers: [
-
+          HomeSliverAppBar(),
         ],
       ),
     );
