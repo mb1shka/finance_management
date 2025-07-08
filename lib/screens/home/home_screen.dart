@@ -17,7 +17,6 @@ class _HomeScreenState extends State<HomeScreen> {
       body: CustomScrollView(
         slivers: [
           HomeSliverAppBar(),
-          //
         ],
       ),
     );
