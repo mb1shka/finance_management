@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:finance_management/design_system/design_system.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,8 +11,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Scaffold(
+      backgroundColor: AppColors.caribbeanGreen,
+      body: CustomScrollView(
+        slivers: [
+
+        ],
+      ),
+    );
   }
 
 }
