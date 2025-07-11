@@ -1,3 +1,4 @@
+import 'package:finance_management/screens/home/view/greeting_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:finance_management/design_system/design_system.dart';
 
@@ -7,45 +8,41 @@ class HomeSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: 220, // Увеличил высоту для текста
-      collapsedHeight: kToolbarHeight,
+      expandedHeight: 220,
+      collapsedHeight: 100,
       pinned: true,
       backgroundColor: AppColors.caribbeanGreen,
-      flexibleSpace: Stack(
-        children: [
-          // Вогнутая маска
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 30,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+      elevation: 0,
+      flexibleSpace: DecoratedBox(
+        decoration: BoxDecoration(
+          color: AppColors.caribbeanGreen,
+        ),
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: 30,
+                decoration: BoxDecoration(
+                  color: AppColors.honeyDrew,
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(AppRadiuses.xxxl)),
+                ),
               ),
             ),
-          ),
-
-          // Контент AppBar с поднятым текстом
-          const Align(
-            alignment: Alignment(0, 0.3), // Поднимаем текст выше
-            child: Text(
-              'Скролл меня',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                shadows: [
-                  Shadow(
-                    blurRadius: 10,
-                    color: Colors.black26,
-                    offset: Offset(1, 1),
-                  ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(36, 36, 36, 0),
+              child: Column(
+                children: [
+                  GreetingWidget(),
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
+
 }
+
