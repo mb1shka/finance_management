@@ -1,30 +1,43 @@
-import 'package:finance_management/screens/home/view/greeting_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:finance_management/design_system/design_system.dart';
 
+import 'app_bar_expenses.dart';
+
 const double _kPadding = 36;
 const double _kRoundedBorderHeight = 30;
+const double _kCollapsedHeight = 150;
+const double _kExpandedHeight = 220;
 
-class HomeSliverAppBar extends StatelessWidget {
+class HomeSliverAppBar extends StatefulWidget {
   const HomeSliverAppBar({super.key});
 
   @override
+  State<StatefulWidget> createState() => _HomeSliverAppBarState();
+}
+
+class _HomeSliverAppBarState extends State<HomeSliverAppBar> {
+  @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: 220,
-      collapsedHeight: 150,
+      expandedHeight: _kExpandedHeight,
+      collapsedHeight: _kCollapsedHeight,
       pinned: true,
       backgroundColor: AppColors.caribbeanGreen,
       elevation: 0,
       flexibleSpace: LayoutBuilder(
         builder: (context, constraints) {
-          final double greetingOpacity =
-              (constraints.maxHeight - 150) / (220 - 150); // 200 = expandedHeight, 100 = collapsedHeight
+          final double greetingWidgetOpacity =
+              (constraints.maxHeight - _kCollapsedHeight) / (_kExpandedHeight - _kCollapsedHeight);
           return DecoratedBox(
             decoration: BoxDecoration(color: AppColors.caribbeanGreen),
             child: Stack(
               children: [
-                Positioned(bottom: _kRoundedBorderHeight + _kPadding, child: Container(height: 30, width: 40, color: Colors.lightBlue)),
+                Positioned(
+                  bottom: _kRoundedBorderHeight + _kPadding,
+                  right: _kPadding,
+                  left: _kPadding,
+                  child: AppBarExpenses(),
+                ),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
@@ -38,7 +51,10 @@ class HomeSliverAppBar extends StatelessWidget {
                 Positioned(
                   top: _kPadding,
                   left: _kPadding,
-                  child: Opacity(opacity: greetingOpacity.clamp(0.0, 1.0), child: GreetingWidget()),
+                  child: Opacity(
+                    opacity: greetingWidgetOpacity.clamp(0.0, 1.0),
+                    child: _GreetingWidget(),
+                  ),
                 ),
               ],
             ),
@@ -46,5 +62,32 @@ class HomeSliverAppBar extends StatelessWidget {
         },
       ),
     );
+  }
+}
+
+class _GreetingWidget extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: Stream.periodic(const Duration(minutes: 5)),
+      builder: (context, _) {
+        return Text(_getGreeting(), style: AppTextStyles.text20Regular);
+      },
+    );
+  }
+
+  String _getGreeting() {
+    final hour = DateTime.now().hour;
+
+    if (hour >= 5 && hour < 12) {
+      return 'Доброе утро!';
+    } else if (hour >= 12 && hour < 17) {
+      return 'Добрый день!';
+    } else if (hour >= 17 && hour < 23) {
+      return 'Добрый вечер!';
+    } else {
+      return 'Доброй ночи!';
+    }
   }
 }

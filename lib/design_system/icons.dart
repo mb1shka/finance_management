@@ -13,4 +13,6 @@ class AppIcons {
   static const rent = '$basePath/rent.svg';
   static const savings = '$basePath/savings.svg';
   static const travel = '$basePath/travel.svg';
+  static const expense = '$basePath/expense.svg';
+  static const income = '$basePath/income.svg';
 }
