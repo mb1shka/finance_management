@@ -45,10 +45,7 @@ class _RemainingBudget extends StatelessWidget {
           children: [
             SvgPicture.asset(AppIcons.income),
             const SizedBox(width: 8),
-            Text(
-              'Осталось на $daysRemaining $daysRemainingString',
-              style: AppTextStyles.text12Regular,
-            ),
+            Text('Осталось на $daysRemaining $daysRemainingString', style: AppTextStyles.text12Regular),
           ],
         ),
         Text('${money.toStringAsFixed(2)}₽', style: AppTextStyles.text24BoldWhite),
@@ -60,7 +57,7 @@ class _RemainingBudget extends StatelessWidget {
     switch (daysRemaining) {
       case _ when daysRemaining % 10 == 1:
         return 'день';
-      case _ when [2,3,4].contains(daysRemaining % 10):
+      case _ when [2, 3, 4].contains(daysRemaining % 10):
         return 'дня';
       default:
         return 'дней';
@@ -82,10 +79,7 @@ class _AlreadySpent extends StatelessWidget {
           children: [
             SvgPicture.asset(AppIcons.expense),
             const SizedBox(width: 8),
-            Text(
-              'Потрачено',
-              style: AppTextStyles.text12Regular,
-            ),
+            Text('Потрачено', style: AppTextStyles.text12Regular),
           ],
         ),
         Text('-${money.toStringAsFixed(2)}₽', style: AppTextStyles.text24BoldOceanBlue),
@@ -97,36 +91,26 @@ class _AlreadySpent extends StatelessWidget {
 class _ExpenseProgressIndicator extends StatelessWidget {
   final double percentsRemaining;
 
-  const _ExpenseProgressIndicator({
-    required this.percentsRemaining,
-  }) : assert(percentsRemaining >= 0 && percentsRemaining <= 100);
+  const _ExpenseProgressIndicator({required this.percentsRemaining})
+    : assert(percentsRemaining >= 0 && percentsRemaining <= 100);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 27,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppRadiuses.l),
         child: Stack(
           children: [
-            // Белый фон (вся полоска)
-            Container(
-              color: Colors.black,
-            ),
-            // Черный прогресс
+            Container(color: AppColors.fenceGreen),
             Align(
               alignment: Alignment.centerRight,
               child: FractionallySizedBox(
                 widthFactor: percentsRemaining / 100,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      bottomLeft: Radius.circular(12),
-                      topRight: Radius.circular(12),
-                      bottomRight: Radius.circular(12),
-                    ),
+                    color: AppColors.honeyDrew,
+                    borderRadius: BorderRadius.all(Radius.circular(AppRadiuses.l)),
                   ),
                 ),
               ),
