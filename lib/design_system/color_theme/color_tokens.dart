@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppColors {
+abstract class AppColors {
   static const honeyDrew = Color(0xFFF1FFF3);
   static const lightGreen = Color(0xFFDFF7E2);
   static const caribbeanGreen = Color(0xFF00D09E);
@@ -13,15 +13,6 @@ class AppColors {
 }
 
 //TODO: СДЕЛАТЬ СВЕТЛУЮ\ТЕМНУЮ ТЕМУ
-// final Color honeyDrew;
-// final Color lightGreen;
-// final Color caribbeanGreen;
-// final Color cyprus;
-// final Color fenceGreen;
-// final Color colorVoid;
-// final Color lightBlue;
-// final Color vividBlue;
-// final Color oceanBlue;
 
 // class ColorTokens {
 //
