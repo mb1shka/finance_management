@@ -51,10 +51,7 @@ class _HomeSliverAppBarState extends State<HomeSliverAppBar> {
                 Positioned(
                   top: _kPadding,
                   left: _kPadding,
-                  child: Opacity(
-                    opacity: greetingWidgetOpacity.clamp(0.0, 1.0),
-                    child: _GreetingWidget(),
-                  ),
+                  child: Opacity(opacity: greetingWidgetOpacity.clamp(0.0, 1.0), child: _GreetingWidget()),
                 ),
               ],
             ),
@@ -66,7 +63,6 @@ class _HomeSliverAppBarState extends State<HomeSliverAppBar> {
 }
 
 class _GreetingWidget extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
