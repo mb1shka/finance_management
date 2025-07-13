@@ -72,22 +72,22 @@ class _GreetingWidget extends StatelessWidget {
     return StreamBuilder(
       stream: Stream.periodic(const Duration(minutes: 5)),
       builder: (context, _) {
-        return Text(_getGreeting(), style: AppTextStyles.text20Regular);
+        return Text(greetingText, style: AppTextStyles.text20Regular);
       },
     );
   }
 
-  String _getGreeting() {
+  String get greetingText {
     final hour = DateTime.now().hour;
-
-    if (hour >= 5 && hour < 12) {
-      return 'Доброе утро!';
-    } else if (hour >= 12 && hour < 17) {
-      return 'Добрый день!';
-    } else if (hour >= 17 && hour < 23) {
-      return 'Добрый вечер!';
-    } else {
-      return 'Доброй ночи!';
+    switch (hour) {
+      case _ when hour >= 5 && hour < 12:
+        return 'Доброе утро!';
+      case _ when hour >= 12 && hour < 17:
+        return 'Добрый день!';
+      case _ when hour >= 17 && hour < 23:
+        return 'Добрый вечер!';
+      default:
+        return 'Доброй ночи!';
     }
   }
 }
