@@ -1,7 +1,17 @@
 import 'package:finance_management/screens/home/view/home_screen.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'di/di.dart';
+import 'database/hive_config.dart';
+
+Future<void> main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await HiveConfig.init();
+
+  await configureDependencies();
+
   runApp(const MyApp());
 }
 
