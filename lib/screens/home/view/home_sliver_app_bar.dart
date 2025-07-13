@@ -5,8 +5,8 @@ import 'app_bar_expenses.dart';
 
 const double _kPadding = 36;
 const double _kRoundedBorderHeight = 30;
-const double _kCollapsedHeight = 150;
-const double _kExpandedHeight = 220;
+const double _kCollapsedHeight = 160;
+const double _kExpandedHeight = 240;
 
 class HomeSliverAppBar extends StatefulWidget {
   const HomeSliverAppBar({super.key});
@@ -27,7 +27,7 @@ class _HomeSliverAppBarState extends State<HomeSliverAppBar> {
       flexibleSpace: LayoutBuilder(
         builder: (context, constraints) {
           final double greetingWidgetOpacity =
-              (constraints.maxHeight - _kCollapsedHeight) / (_kExpandedHeight - _kCollapsedHeight);
+              (constraints.maxHeight - _kCollapsedHeight - 50) / (_kExpandedHeight - _kCollapsedHeight - 50);
           return DecoratedBox(
             decoration: BoxDecoration(color: AppColors.caribbeanGreen),
             child: Stack(

@@ -25,6 +25,8 @@ class _AppBarExpensesState extends State<AppBarExpenses> {
             _AlreadySpent(money: 800),
           ],
         ),
+        const SizedBox(height: 12),
+        _ExpenseProgressIndicator(percentsRemaining: 70),
       ],
     );
   }
@@ -95,14 +97,46 @@ class _AlreadySpent extends StatelessWidget {
 }
 
 class _ExpenseProgressIndicator extends StatelessWidget {
-  const _ExpenseProgressIndicator({required this.budget, required this.spentPercentage});
+  final double percentsRemaining;
 
-  final double budget;
-  final double spentPercentage;
+  const _ExpenseProgressIndicator({
+    required this.percentsRemaining,
+  }) : assert(percentsRemaining >= 0 && percentsRemaining <= 100);
 
   @override
   Widget build(BuildContext context) {
-    return Text('ff', style: AppTextStyles.text24semiBold);
+    return SizedBox(
+      height: 27,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Stack(
+          children: [
+            // Белый фон (вся полоска)
+            Container(
+              color: Colors.black,
+            ),
+            // Черный прогресс
+            Align(
+              alignment: Alignment.centerRight,
+              child: FractionallySizedBox(
+                widthFactor: percentsRemaining / 100,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(12),
+                      bottomLeft: Radius.circular(12),
+                      topRight: Radius.circular(12),
+                      bottomRight: Radius.circular(12),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
