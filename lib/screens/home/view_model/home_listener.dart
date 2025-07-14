@@ -25,4 +25,8 @@ class HomeListener extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void createBudgetPlan() {
+    //TODO: реализовать
+  }
 }
