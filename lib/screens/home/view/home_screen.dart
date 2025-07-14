@@ -1,6 +1,8 @@
 import 'package:finance_management/screens/home/view/home_sliver_app_bar.dart';
+import 'package:finance_management/screens/home/view_model/home_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:finance_management/design_system/design_system.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,6 +12,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,16 +21,24 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: DecoratedBox(
           decoration: BoxDecoration(color: AppColors.honeyDrew),
-          child: CustomScrollView(
-            slivers: [
-              HomeSliverAppBar(),
-              SliverToBoxAdapter(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(children: [_buildTotalBalanceContainer(), _buildExpenses()]),
+          child: RefreshIndicator(
+            key: _refreshIndicatorKey,
+            color: AppColors.caribbeanGreen,
+            backgroundColor: AppColors.honeyDrew,
+            onRefresh: () async {
+              await context.read<HomeListener>().refreshBudgetStatus();
+            },
+            child: CustomScrollView(
+              slivers: [
+                HomeSliverAppBar(),
+                SliverToBoxAdapter(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(children: [_buildTotalBalanceContainer(), _buildExpenses()]),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

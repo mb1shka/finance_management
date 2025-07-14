@@ -1,3 +1,4 @@
+import 'package:finance_management/repositories/budget/budget_repository_impl.dart';
 import 'package:finance_management/screens/home/view/home_screen.dart';
 import 'package:finance_management/screens/home/view_model/home_listener.dart';
 import 'package:flutter/material.dart';
@@ -12,10 +13,11 @@ Future<void> main() async {
   await HiveConfig.init();
 
   await configureDependencies();
+  setupDependencies();
 
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => HomeListener())],
+      providers: [ChangeNotifierProvider(create: (_) => HomeListener(di.get<BudgetRepositoryImpl>()))],
       child: const MyApp(),
     ),
   );

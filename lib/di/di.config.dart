@@ -13,7 +13,7 @@ import 'package:injectable/injectable.dart' as _i526;
 
 import '../database/boxes.dart' as _i781;
 import '../database/budget/budget_box.dart' as _i532;
-import '../repositories/budget_repository.dart' as _i620;
+import '../repositories/budget/budget_repository_impl.dart' as _i259;
 
 // initializes the registration of main-scope dependencies inside of GetIt
 Future<_i174.GetIt> $initGetIt(
@@ -33,7 +33,7 @@ Future<_i174.GetIt> $initGetIt(
     },
     preResolve: true,
   );
-  gh.factory<_i620.BudgetRepository>(
-      () => _i620.BudgetRepository(gh<_i781.BudgetBox>()));
+  gh.singleton<_i259.BudgetRepositoryImpl>(
+      () => _i259.BudgetRepositoryImpl(gh<_i781.BudgetBox>()));
   return getIt;
 }
